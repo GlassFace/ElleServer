@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElleAuth", "ElleAuth\ElleAuth.csproj", "{14C1E984-22FB-4FC7-BA8A-68B907641E2B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElleWorld", "ElleWorld\ElleWorld.csproj", "{1627051B-BFE1-46DB-836E-9882C96BD942}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Servers", "Servers", "{66B1A77E-E51C-46CC-97D7-91A4CA23C60D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{14C1E984-22FB-4FC7-BA8A-68B907641E2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14C1E984-22FB-4FC7-BA8A-68B907641E2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14C1E984-22FB-4FC7-BA8A-68B907641E2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14C1E984-22FB-4FC7-BA8A-68B907641E2B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1627051B-BFE1-46DB-836E-9882C96BD942}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1627051B-BFE1-46DB-836E-9882C96BD942}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1627051B-BFE1-46DB-836E-9882C96BD942}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1627051B-BFE1-46DB-836E-9882C96BD942}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{14C1E984-22FB-4FC7-BA8A-68B907641E2B} = {66B1A77E-E51C-46CC-97D7-91A4CA23C60D}
+		{1627051B-BFE1-46DB-836E-9882C96BD942} = {66B1A77E-E51C-46CC-97D7-91A4CA23C60D}
+	EndGlobalSection
+EndGlobal

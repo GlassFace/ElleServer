@@ -1,0 +1,13 @@
+#####################################################
+#                                                   #
+#                                                   #
+#                 World Config File                 #
+#                                                   #
+#                                                   #
+#####################################################
+
+serverport = 8085;
+mysql_host = localhost;
+mysql_user = root;
+mysql_password = ;
+mysql_auth_db = elle_auth;
