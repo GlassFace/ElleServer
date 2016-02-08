@@ -11,3 +11,16 @@ mysql_host = localhost;
 mysql_user = root;
 mysql_password = ;
 mysql_auth_db = elle_auth;
+mysql_port = 3306;
+mysql_min_pool_size = 5;
+mysql_max_pool_size = 30;
+
+##################
+#Database type
+#
+# 0 - MySQL
+# 1 - MSSQL
+# 2 - SqLite
+# Please, do not change, only MySQL supported.
+##################
+database_type = 0;

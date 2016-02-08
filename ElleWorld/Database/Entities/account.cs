@@ -34,6 +34,28 @@ namespace ElleWorld.Database
 
         MySqlConnection AuthConn = new MySqlConnection("server=" + conf.getValue("mysql_host") + ";user=" + conf.getValue("mysql_user") + ";database=" + conf.getValue("mysql_auth_db") + ";password=" + conf.getValue("mysql_password") + ";");
 
+        public Account(int ID)
+        {
+            AuthConn.Open();
+            MySqlCommand cmd = new MySqlCommand("SELECT ID, username, password, email, isOnline, type FROM account WHERE ID = @id;", AuthConn);
+            MySqlParameter idParameter = new MySqlParameter("@id", MySqlDbType.Int16, 0);
+            idParameter.Value = ID;
+            cmd.Parameters.Add(idParameter);
+            MySqlDataReader row = cmd.ExecuteReader();
+            while (row.Read())
+            {
+                ID = Convert.ToInt32(row["ID"]);
+                email = row["email"].ToString();
+                username = row["username"].ToString();
+                password = row["password"].ToString();
+                isOnline = Convert.ToInt16(row["isOnline"]);
+                type = Convert.ToInt16(row["type"]);
+            }
+            row.Close();
+            AuthConn.Close();
+            updateOldValues();
+        }
+
 		public Account(string _username, string _password)
 		{
             username = _username;

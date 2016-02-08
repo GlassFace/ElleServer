@@ -50,15 +50,23 @@
     <Compile Include="Core\Config\Config_Manager.cs" />
     <Compile Include="Core\Server\Server.cs" />
     <Compile Include="Core\User\Session.cs" />
-    <Compile Include="Database\account.cs" />
+    <Compile Include="Database\Entities\account.cs" />
+    <Compile Include="Database\DBConnection.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Core\Config\worldconf.conf.rename" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <Import Project="..\LappaORM\Lappa ORM\Lappa ORM.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>copy /Y "$(ProjectDir)Core\Config\worldconf.conf.rename" "$(TargetDir)"</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

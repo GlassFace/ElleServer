@@ -44,5 +44,12 @@ namespace ElleWorld.Core
             }
             return sb.ToString();
         }
+
+        public List<Account> LoadAccounts(/*DBConnection authDB*/)
+        {
+            List<Account> accountList = new List<Account>();
+            
+            return accountList;
+        }
     }
 }
