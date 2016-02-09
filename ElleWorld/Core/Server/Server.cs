@@ -15,18 +15,6 @@ namespace ElleWorld.Core
 {
     class Server
     {
-        static Config_Manager conf = new Config_Manager();
-
         public Server() { }
-
-        public void DoWork()
-        {
-            RouterSocket server = new RouterSocket("@tcp://" + conf.getValue("serverhost") + ":" + conf.getValue("serverport"));
-            while (true)
-            {
-                Log.Message("Server is alive...");
-                Thread.Sleep(10000);
-            }
-        }
     }
 }

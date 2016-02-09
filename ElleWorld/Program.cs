@@ -61,22 +61,17 @@ namespace ElleWorld
             accountList = ServerMGR.LoadAccounts();
             Log.Message("Loaded " + accountList.Count + " accounts.");
 
-            Server s = new Server();
-            Thread serverThread = new Thread(s.DoWork);
-            serverThread.Start();
+            //Start Console Command Manager.
+            ConsoleCommand consoleCommand = new ConsoleCommand();
+            Thread consoleCommandThread = new Thread(consoleCommand.DoWork);
+            consoleCommandThread.Start();
 
-            
-
+            //Start server.
+            RouterSocket server = new RouterSocket("@tcp://" + conf.getValue("serverhost") + ":" + conf.getValue("serverport"));
             while (true)
             {
-                Thread.Sleep(1);
-                var cmdline = Console.ReadLine().Split(new string[] { " " }, StringSplitOptions.None);
-
-                if (cmdline.Length > 0)
-                {
-                    //Handle console commands with a manager
-                    ConsoleCommand.ParseCommand(cmdline);
-                }
+                Log.Message("Server is alive...");
+                Thread.Sleep(10000);
             }
         }
     }

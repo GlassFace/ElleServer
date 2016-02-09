@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ElleWorld.Core
 {
     class ConsoleCommand
     {
-        public static void ParseCommand(string[] cmd)
+        private static void ParseCommand(string[] cmd)
         {
             if(cmd[0].ToLower().StartsWith("."))
             {
@@ -31,6 +32,22 @@ namespace ElleWorld.Core
                     default:
                         Log.Error("Command " + cmd[0] + " doesn't exist");
                         break;
+                }
+            }
+        }
+
+        public ConsoleCommand() { }
+
+        public void DoWork()
+        {
+            while (true)
+            {
+                Thread.Sleep(1);
+                var cmdline = Console.ReadLine().Split(new string[] { " " }, StringSplitOptions.None);
+
+                if (cmdline.Length > 0)
+                {
+                    ParseCommand(cmdline);
                 }
             }
         }
