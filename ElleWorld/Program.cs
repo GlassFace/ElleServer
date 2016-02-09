@@ -4,6 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Net;
+using System.Net.Sockets;
+using NetMQ;
+using NetMQ.Sockets;
 using ElleWorld.Database;
 using ElleWorld.Core;
 
@@ -56,6 +60,12 @@ namespace ElleWorld
             //Load accounts.
             accountList = ServerMGR.LoadAccounts();
             Log.Message("Loaded " + accountList.Count + " accounts.");
+
+            Server s = new Server();
+            Thread serverThread = new Thread(s.DoWork);
+            serverThread.Start();
+
+            
 
             while (true)
             {

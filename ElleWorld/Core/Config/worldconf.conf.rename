@@ -6,6 +6,7 @@
 #                                                   #
 #####################################################
 
+serverhost = 127.0.0.1;
 serverport = 8085;
 mysql_host = localhost;
 mysql_user = root;
