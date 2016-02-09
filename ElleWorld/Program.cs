@@ -6,13 +6,13 @@ using System.Threading;
 using System.Threading.Tasks;
 using ElleWorld.Database;
 using ElleWorld.Core;
-using Lappa_ORM;
 
 namespace ElleWorld
 {
-    class Program
+    class WorldServer
     {
         static Config_Manager conf = new Config_Manager();
+        public static List<Account> accountList = new List<Account>();
         static void Main(string[] args)
         {
             Console.ForegroundColor = ConsoleColor.Red;
@@ -32,18 +32,30 @@ namespace ElleWorld
             Console.ResetColor();
             Console.ForegroundColor = ConsoleColor.Cyan;
 
-            string authConnectionString = DBConnection.CreateConnectionString(conf.getValue("mysql_host"), conf.getValue("mysql_user"), conf.getValue("mysql_password"), conf.getValue("mysql_auth_db"), Convert.ToInt16(conf.getValue("mysql_port")), Convert.ToInt16(conf.getValue("mysql_min_pool_size")), Convert.ToInt16(conf.getValue("mysql_max_pool_size")), (DatabaseType)Convert.ToInt16(conf.getValue("database_type")));
-            
-            if (DBConnection.Auth.Initialize(authConnectionString, (DatabaseType)Convert.ToInt16(conf.getValue("database_type"))))
+            string authConnectionString = DBConnection.CreateConnectionString(conf.getValue("mysql_host"), conf.getValue("mysql_user"), conf.getValue("mysql_password"), conf.getValue("mysql_auth_db"), Convert.ToInt16(conf.getValue("mysql_port")), Convert.ToInt16(conf.getValue("mysql_min_pool_size")), Convert.ToInt16(conf.getValue("mysql_max_pool_size")));
+            DBConnection.Auth.ConnectionString = authConnectionString;
+
+            try
             {
-                Console.WriteLine("Auth Database Successfully initialized");
+                DBConnection.Auth.Open();
+            }
+            catch(MySql.Data.MySqlClient.MySqlException ex)
+            {
+                Log.Error(ex.ToString());
+            }
+            
+            if (DBConnection.Auth.State == System.Data.ConnectionState.Open)
+            {
+                Log.Message("Auth Database Successfully initialized");
             }
             else
             {
-                Console.WriteLine("Error: Check your configuration file.");
+                Log.Error("Error: Check your configuration file.");
             }
 
             //Load accounts.
+            accountList = ServerMGR.LoadAccounts();
+            Log.Message("Loaded " + accountList.Count + " accounts.");
 
             while (true)
             {
@@ -53,6 +65,7 @@ namespace ElleWorld
                 if (cmdline.Length > 0)
                 {
                     //Handle console commands with a manager
+                    ConsoleCommand.ParseCommand(cmdline);
                 }
             }
         }

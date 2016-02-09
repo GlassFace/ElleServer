@@ -47,7 +47,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\Commands\ConsoleCommand.cs" />
     <Compile Include="Core\Config\Config_Manager.cs" />
+    <Compile Include="Core\Log\Log.cs" />
     <Compile Include="Core\Server\Server.cs" />
     <Compile Include="Core\User\Session.cs" />
     <Compile Include="Database\Entities\account.cs" />

@@ -1,7 +1,0 @@
-c:\users\luigi\documents\visual studio 2015\Projects\ElleServer\ElleWorld\bin\Release\ElleWorld.exe.config
-c:\users\luigi\documents\visual studio 2015\Projects\ElleServer\ElleWorld\bin\Release\ElleWorld.exe
-c:\users\luigi\documents\visual studio 2015\Projects\ElleServer\ElleWorld\bin\Release\ElleWorld.pdb
-c:\users\luigi\documents\visual studio 2015\Projects\ElleServer\ElleWorld\obj\Release\ElleWorld.exe
-c:\users\luigi\documents\visual studio 2015\Projects\ElleServer\ElleWorld\obj\Release\ElleWorld.pdb
-c:\users\luigi\documents\visual studio 2015\Projects\ElleServer\ElleWorld\bin\Release\MySql.Data.dll
-c:\users\luigi\documents\visual studio 2015\Projects\ElleServer\ElleWorld\obj\Release\ElleWorld.csprojResolveAssemblyReference.cache

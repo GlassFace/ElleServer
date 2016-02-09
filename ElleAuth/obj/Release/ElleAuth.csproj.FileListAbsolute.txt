@@ -1,6 +1,0 @@
-c:\users\luigi\documents\visual studio 2015\Projects\ElleServer\ElleAuth\bin\Release\ElleAuth.exe.config
-c:\users\luigi\documents\visual studio 2015\Projects\ElleServer\ElleAuth\bin\Release\ElleAuth.exe
-c:\users\luigi\documents\visual studio 2015\Projects\ElleServer\ElleAuth\bin\Release\ElleAuth.pdb
-c:\users\luigi\documents\visual studio 2015\Projects\ElleServer\ElleAuth\obj\Release\ElleAuth.csprojResolveAssemblyReference.cache
-c:\users\luigi\documents\visual studio 2015\Projects\ElleServer\ElleAuth\obj\Release\ElleAuth.exe
-c:\users\luigi\documents\visual studio 2015\Projects\ElleServer\ElleAuth\obj\Release\ElleAuth.pdb

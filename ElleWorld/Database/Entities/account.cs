@@ -59,9 +59,8 @@ namespace ElleWorld.Database
 		public Account(string _username, string _password)
 		{
             username = _username;
-            ServerMGR s = new ServerMGR();
 
-            _password = s.DoShaHashPassword(username, _password);
+            _password = ServerMGR.DoShaHashPassword(username, _password);
 
             AuthConn.Open();
             MySqlCommand cmd = new MySqlCommand("SELECT ID, username, password, email, isOnline, type FROM account WHERE username = @username AND password = @password;", AuthConn);
@@ -130,8 +129,7 @@ namespace ElleWorld.Database
 			idParameter.Value = ID;
 			usernameParameter.Value = username;
 
-            ServerMGR s = new ServerMGR();
-            password = s.DoShaHashPassword(username, password);
+            password = ServerMGR.DoShaHashPassword(username, password);
 
 			passwordParameter.Value = password;
 			emailParameter.Value = email;
