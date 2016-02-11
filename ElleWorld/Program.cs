@@ -10,6 +10,7 @@ using NetMQ;
 using NetMQ.Sockets;
 using ElleWorld.Database;
 using ElleWorld.Core;
+using System.Security.Cryptography;
 
 namespace ElleWorld
 {
@@ -63,14 +64,14 @@ namespace ElleWorld
 
             //Start Console Command Manager.
             ConsoleCommand consoleCommand = new ConsoleCommand();
-            Thread consoleCommandThread = new Thread(consoleCommand.DoWork);
+            Thread consoleCommandThread = new Thread(consoleCommand.CheckForCommands);
             consoleCommandThread.Start();
 
             //Start server.
             RouterSocket server = new RouterSocket("@tcp://" + conf.getValue("serverhost") + ":" + conf.getValue("serverport"));
             while (true)
             {
-                Log.Message("Server is alive...");
+                //Log.Message("Server is alive...");
                 Thread.Sleep(10000);
             }
         }

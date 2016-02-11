@@ -56,25 +56,25 @@ namespace ElleWorld.Database
             updateOldValues();
         }
 
-		public Account(string _username, string _password)
+		public Account(string _email, string _password)
 		{
-            username = _username;
+            email = _email;
 
-            _password = ServerMGR.DoShaHashPassword(username, _password);
+            _password = ServerMGR.CreateBNetPassword(email, _password);
 
             AuthConn.Open();
-            MySqlCommand cmd = new MySqlCommand("SELECT ID, username, password, email, isOnline, type FROM account WHERE username = @username AND password = @password;", AuthConn);
+            MySqlCommand cmd = new MySqlCommand("SELECT ID, username, password, email, isOnline, type FROM account WHERE email = @email AND password = @password;", AuthConn);
             MySqlParameter passwordParameter = new MySqlParameter("@password", MySqlDbType.VarChar, 0);
-            MySqlParameter usernameParameter = new MySqlParameter("@username", MySqlDbType.VarChar, 0);
+            MySqlParameter emailParameter = new MySqlParameter("@email", MySqlDbType.VarChar, 0);
             passwordParameter.Value = _password.ToUpper();
-            usernameParameter.Value = username.ToUpper();
-            cmd.Parameters.Add(usernameParameter);
+            emailParameter.Value = email.ToUpper();
+            cmd.Parameters.Add(emailParameter);
             cmd.Parameters.Add(passwordParameter);
             MySqlDataReader row = cmd.ExecuteReader();
             while (row.Read())
             {
                 ID = Convert.ToInt32(row["ID"]);
-                email = row["email"].ToString();
+                username = row["username"].ToString();
             }
             row.Close();
             AuthConn.Close();
@@ -129,7 +129,7 @@ namespace ElleWorld.Database
 			idParameter.Value = ID;
 			usernameParameter.Value = username;
 
-            password = ServerMGR.DoShaHashPassword(username, password);
+            password = ServerMGR.CreateBNetPassword(username, password);
 
 			passwordParameter.Value = password;
 			emailParameter.Value = email;
@@ -181,9 +181,24 @@ namespace ElleWorld.Database
             return username;
         }
 
+        public string GetPassword()
+        {
+            return password;
+        }
+
+        public void SetPassword(string newpassword)
+        {
+            password = ServerMGR.CreateBNetPassword(this.username, newpassword);
+        }
+
         public int GetID()
         {
             return ID;
+        }
+
+        public string GetEmail()
+        {
+            return email;
         }
 
         public void SetOnline()
