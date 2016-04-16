@@ -47,6 +47,9 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -55,14 +58,52 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\Attributes\GlobalMessageAttributes.cs" />
+    <Compile Include="Core\Attributes\MessageAttribute.cs" />
     <Compile Include="Core\Commands\ConsoleCommand.cs" />
     <Compile Include="Core\Config\Config_Manager.cs" />
+    <Compile Include="Core\Costants\Account\SessionState.cs" />
+    <Compile Include="Core\Costants\GuidType.cs" />
+    <Compile Include="Core\Costants\Net\ClientMessage.cs" />
+    <Compile Include="Core\Costants\Net\GlobalClientMessage.cs" />
+    <Compile Include="Core\Costants\Net\GlobalServerMessage.cs" />
     <Compile Include="Core\Log\Log.cs" />
+    <Compile Include="Core\Managers\Manager.cs" />
+    <Compile Include="Core\Managers\SessionManager.cs" />
+    <Compile Include="Core\Miscellaneous\Extensions.cs" />
+    <Compile Include="Core\Miscellaneous\Helper.cs" />
+    <Compile Include="Core\Miscellaneous\ServerInfo.cs" />
+    <Compile Include="Core\Miscellaneous\WorldServerInfo.cs" />
+    <Compile Include="Core\Miscellaneous\Singleton.cs" />
+    <Compile Include="Core\Network\ClientPacket.cs" />
+    <Compile Include="Core\Network\IServerStruct.cs" />
+    <Compile Include="Core\Network\Packet.cs" />
+    <Compile Include="Core\Network\PacketReaderExtensions.cs" />
+    <Compile Include="Core\Network\Packets\Compression.cs" />
+    <Compile Include="Core\Network\Packets\Handlers\NetHandler.cs" />
+    <Compile Include="Core\Network\Packets\PacketManager.cs" />
+    <Compile Include="Core\Network\Packets\Server\AuthChallenge.cs" />
+    <Compile Include="Core\Network\Packets\TransferInitiate.cs" />
+    <Compile Include="Core\Network\PacketWriterExtensions.cs" />
+    <Compile Include="Core\Network\ServerPacket.cs" />
+    <Compile Include="Core\Network\SessionBase.cs" />
+    <Compile Include="Core\Network\WordSession.cs" />
+    <Compile Include="Core\Objects\SmartGuid.cs" />
+    <Compile Include="Core\Objects\Vector3.cs" />
+    <Compile Include="Core\Cryptography\WoWCrypt.cs" />
+    <Compile Include="Core\Remoting\IPCClient.cs" />
+    <Compile Include="Core\Remoting\Objects\ServerInfoBase.cs" />
+    <Compile Include="Core\Remoting\Objects\WorldNodeInfo.cs" />
+    <Compile Include="Core\Remoting\Objects\WorldServerInfo.cs" />
+    <Compile Include="Core\Remoting\Services\IService.cs" />
+    <Compile Include="Core\Remoting\Services\IServiceCallback.cs" />
     <Compile Include="Core\Server\Server.cs" />
+    <Compile Include="Core\Server\ServerBase.cs" />
     <Compile Include="Core\Server\ServerMGR.cs" />
     <Compile Include="Core\User\Session.cs" />
     <Compile Include="Database\Entities\account.cs" />
     <Compile Include="Database\DBConnection.cs" />
+    <Compile Include="Database\Entities\Realm.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -73,6 +114,12 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Core\Network\Packets\ResetCompressionContext.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Core\Network\Packets\Client\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

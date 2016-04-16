@@ -1,20 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
+﻿using System.Net.Sockets;
 using System.Threading.Tasks;
-using System.Security.Cryptography;
-using MySql.Data.MySqlClient;
-using ElleWorld;
-using ElleWorld.Database;
-using NetMQ;
-using NetMQ.Sockets;
+using ElleWorld.Core.ServerConn;
+using ElleWorld.Core.Network;
+using ElleWorld.Core.Remoting;
+using ElleWorld.Core.Remoting.Objects;
+using ElleWorld.Core.Managers;
 
 namespace ElleWorld.Core
 {
-    class Server
+    class Server : ServerBase
     {
-        public Server() { }
+        public static IPCClient WorldService;
+        public static IPCClient NodeService;
+        public static WorldServerInfo ServerInfo;
+
+        static Config_Manager conf = new Config_Manager();
+
+        public Server(string ip, int port) : base(ip, port)
+        {
+            WorldService = new IPCClient(ip, "WorldServer");
+        }
+
+        public override async Task DoWork(Socket client)
+        {
+            var worker = new WorldSession(client);
+
+            worker.Id = ++Manager.Session.LastSessionId;
+
+            if (Manager.Session.Add(worker.Id, worker))
+                await Task.Factory.StartNew(Manager.Session.Sessions[worker.Id].Accept);
+        }
     }
 }

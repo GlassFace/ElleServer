@@ -10,7 +10,7 @@ using ElleWorld.Core;
 
 namespace ElleWorld.Database
 {
-	class Account
+	public class Account
 	{
 		int ID = 0; //Comment: 
 		int OLD_ID = 0;
